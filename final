@@ -1,0 +1,2250 @@
+var currentScene = "main_screen";
+var score = 0;
+
+background(212, 255, 112);
+//Button prototypes
+var Button = function(config) {
+    this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width || 0;
+    this.height = config.height || 0;
+    this.buttonColor = config.buttonColor;
+    this.label = config.label; 
+};
+
+Button.prototype.isMouseClicked = function() {
+    return mouseX > this.x &&
+    mouseX < (this.x +this.width) &&
+    mouseY > this.y &&
+    mouseY < (this.y + this.height);
+};
+
+Button.prototype.draw = function() {
+     fill(this.buttonColor);
+     rect(this.x, this.y, this.width, this.height, 5);
+     fill(0,0,0);
+     textSize(15);
+     text(this.label, this.x, this.y+this.height);
+};
+
+var drawButton = function(btn) {
+    fill(this.buttonColor);
+    rect(btn.x, btn.y, btn.width, btn.height, 40);
+    fill(0, 0, 0);
+    textSize(15);
+};
+
+//start screen
+var splash = function() {
+    currentScene = "main_screen";
+    fill(255, 255, 255);
+    ellipse(200, 50, 310, 70);
+    fill(0, 0, 0);
+    text("Culture",291,321);
+    text("Sports",173,321);
+    text("Video Games",29,321);
+    textSize(25);
+    text("Final Project Trivia Game", 60, 40, 300, 300);
+    fill(0, 0, 0);
+    textSize(15);
+    text("Katie Boss", 88, 240, 90, 130);
+    text("Danny Tran", 243, 240, 90, 130);
+    textSize(20);
+    text("Choose a Category", 110, 360, 300, 300);
+};
+
+var btn1 = new Button({
+    x: 20,
+    y: 290,
+    width: 110,
+    height: 50,
+    buttonColor: color(26, 212, 212),
+});
+
+var btn2 = new Button({
+    x: 140,
+    y: 290,
+    width: 110,
+    height: 50,
+    buttonColor: color(230, 157, 21)
+});
+
+var btn3 = new Button({
+    x: 260,
+    y: 290,
+    width: 110,
+    height: 50,
+    buttonColor: color(255, 107, 235)
+});
+//culture buttons
+var culturebtn1wrong1 = new Button({
+    x: 70,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "a. Dune"
+});
+
+var culturebtn1wrong2 = new Button({
+    x: 70,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "c. Drive My Car"
+});
+
+var culturebtn1wrong3 = new Button({
+    x: 70,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "d. Encanto"
+});
+
+var culturebtn2wrong1 = new Button({
+    x: 70,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "b. Facebook"
+});
+
+var culturebtn2wrong2 = new Button({
+    x: 70,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "c. Pinterest"
+});
+
+var culturebtn2wrong3 = new Button({
+    x: 70,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "d. Discord"
+});
+
+var culturebtn3wrong1 = new Button({
+    x: 70,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "a. Drake"
+});
+
+var culturebtn3wrong2 = new Button({
+    x: 70,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "b. Billie Eillish"
+});
+
+var culturebtn3wrong3 = new Button({
+    x: 70,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "d. Justin Bieber"
+});
+
+var culturebtn4wrong1 = new Button({
+    x: 70,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "a. Mandarin"
+});
+
+var culturebtn4wrong2 = new Button({
+    x: 70,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "c. Spanish"
+});
+
+var culturebtn4wrong3 = new Button({
+    x: 70,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "d. French"
+});
+
+var culturebtn5wrong1 = new Button({
+    x: 70,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "a. 42%"
+});
+
+var culturebtn5wrong2 = new Button({
+    x: 70,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "b. 46%"
+});
+
+var culturebtn5wrong3 = new Button({
+    x: 70,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "c. 52%"
+});
+
+var culturebtn1 = new Button({
+    x: 70,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "b. CODA"
+});
+
+var culturebtn2 = new Button({
+    x: 70,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "a. Instagram"
+});
+
+var culturebtn3 = new Button({
+    x: 70,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "c. Bad Bunny"
+});
+
+var culturebtn4 = new Button({
+    x: 70,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "b. English"
+});
+
+var culturebtn5 = new Button({
+    x: 70,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(211, 164, 242),
+    label: "d. 56%"
+});
+
+var culturebtn_return = new Button({
+x: 300,
+y: 325,
+width: 70,
+height: 20,
+buttonColor: color(64, 255, 0),
+label: "Continue"
+});
+
+//sports buttons
+var sportsbtn1wrong1 = new Button({
+    x: 93,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "a. 3"
+});
+
+var sportsbtn2wrong1 = new Button({
+    x: 93,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "a. 94"
+});
+
+var sportsbtn2wrong2 = new Button({
+    x: 93,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "b. 103"
+});
+
+var sportsbtn2wrong3 = new Button({
+    x: 93,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "c. 107"
+});
+
+var sportsbtn3wrong1 = new Button({
+    x: 93,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "b. Duane Woodward"
+});
+
+var sportsbtn3wrong2 = new Button({
+    x: 93,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "c. David Cox"
+});
+
+var sportsbtn3wrong3 = new Button({
+    x: 93,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "d. Dan Hurley"
+});
+
+var sportsbtn4wrong1 = new Button({
+    x: 93,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "b. Bagger"
+});
+
+var sportsbtn4wrong2 = new Button({
+    x: 93,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "c. Yahtzee"
+});
+
+var sportsbtn4wrong3 = new Button({
+    x: 93,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "d. Strike"
+});
+
+var sportsbtn5wrong1 = new Button({
+    x: 93,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "a. Rocky Marciano"
+});
+
+var sportsbtn5wrong2 = new Button({
+    x: 93,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "c. Mike Tyson"
+});
+
+var sportsbtn1wrong3 = new Button({
+    x: 93,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "d. 10"
+});
+
+var sportsbtn5wrong3 = new Button({
+    x: 93,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "d. Jack Dempsy"
+});
+
+var sportsbtn1wrong2 = new Button({
+    x: 93,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "b. 6"
+});
+
+var sportsbtn1 = new Button({
+    x: 93,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "c. 7"
+});
+
+var sportsbtn2 = new Button({
+    x: 93,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "d. 113"
+});
+
+var sportsbtn3 = new Button({
+    x: 93,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(255, 170, 0),
+    label: "a. Archie Miller"
+});
+
+var sportsbtn4 = new Button({
+    x: 93,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(255,170,0),
+    label: "a. Turkey"
+});
+
+var sportsbtn5 = new Button({
+    x: 93,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(255,170,0),
+    label: "b. Jake LaMotta"
+});
+
+var sportsbtn_return = new Button({
+    x: 300,
+    y: 325,
+    width: 70,
+    height: 20,
+    buttonColor: color(64, 255, 0),
+    label: "Continue"
+});
+
+//video game buttons
+var videogamesbtn1wrong1 = new Button({
+    x: 93,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "a. 2008"
+});
+
+var videogamesbtn2wrong1 = new Button({
+    x: 93,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "a. The Coleco Telstar"
+});
+
+var videogamesbtn3wrong1 = new Button({
+    x: 93,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "b. Galar"
+});
+
+var videogamesbtn4wrong1 = new Button({
+    x: 93,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "a. Game Boy"
+});
+
+var videogamesbtn5wrong1 = new Button({
+    x: 70,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "a. Pokemon X & Y"
+});
+
+var videogamesbtn1wrong2 = new Button({
+    x: 93,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "b. 2009"
+});
+
+var videogamesbtn2wrong2 = new Button({
+    x: 93,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "b. Nintendo Entertainment System"
+});
+
+var videogamesbtn3wrong2 = new Button({
+    x: 93,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "c. Sinnoh"
+});
+
+var videogamesbtn4wrong2 = new Button({
+    x: 93,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "b. Game Boy Advance"
+});
+
+var videogamesbtn5wrong2 = new Button({
+    x: 70,
+    y: 170,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "b. New Super Mario Bros. 2"
+});
+
+
+var videogamesbtn1 = new Button({
+    x: 93,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "c. 2011"
+});
+
+var videogamesbtn2 = new Button({
+    x: 93,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "d. Magnavox Odyssey"
+});
+
+var videogamesbtn3 = new Button({
+    x: 93,
+    y: 130,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "a. Unova"
+});
+
+var videogamesbtn4 = new Button({
+    x: 93,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "c. Nintendo DS"
+});
+
+var videogamesbtn5 = new Button({
+    x: 70,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "d. Mario Kart 7"
+});
+
+var videogamesbtn1wrong3 = new Button({
+    x: 93,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "d. 2013"
+});
+
+var videogamesbtn2wrong3 = new Button({
+    x: 93,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "c. Atari Home Pong"
+});
+
+var videogamesbtn3wrong3 = new Button({
+    x: 93,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "d. Johto"
+});
+
+var videogamesbtn4wrong3 = new Button({
+    x: 93,
+    y: 250,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "d. Nintendo DSi"
+});
+
+var videogamesbtn5wrong3 = new Button({
+    x: 70,
+    y: 210,
+    width: 50,
+    height: 25,
+    buttonColor: color(0, 255, 213),
+    label: "c. Pokemon Omega Ruby & Alpha Sapphire"
+});
+
+var videogamesbtn_return = new Button({
+    x: 300,
+    y: 325,
+    width: 70,
+    height: 20,
+    buttonColor: color(64, 255, 0),
+    label: "Continue"
+});
+
+var isMouseInside = function(btn) {
+    return (mouseX >= btn.x &&
+            mouseX <= (btn.x+btn.width) &&
+            mouseY >= btn.y && 
+            mouseY <= (btn.y+btn.height));
+};
+//SPORTS ENDSCREEN
+var sportsEndScreen = function() {
+    currentScene = "sports_endscene";
+    background(247, 255, 0);
+
+var bitmojiHead = function(danx, dany, danheight) {
+    //Head
+    fill(255, 252, 219);
+    ellipse(danx,dany,danheight/150*80,danheight/150*108);
+    //Face
+    fill(255, 255, 255);
+    ellipse(danx-(danheight/150*17),dany+(danheight/150*4),danheight/150*14,danheight/150*10);
+    ellipse(danx+(danheight/150*17),dany+(danheight/150*4),danheight/150*14,danheight/150*10);
+    fill(0, 0, 0);
+    ellipse(danx+(danheight/150*17),dany+(danheight/150*4),danheight/150*5,danheight/150*7);
+    ellipse(danx+(danheight/150*-17),dany+(danheight/150*4),danheight/150*5,danheight/150*7);
+    line(danx+(danheight/150*-15),dany+(danheight/150*32),danx+(danheight/150*10),dany+(danheight/150*34));
+    //Hair
+    strokeWeight(3);
+    fill(3, 1, 1);
+     arc(danx+(danheight/150*1), dany-(danheight/150*29), danheight/150*85, danheight/150*50, 145, 399);  
+     arc(danx+(danheight/150*-1), dany-(danheight/150*26), danheight/150*103, danheight/150*77, 139, 399);
+     arc(danx+(danheight/150*-33), dany-(danheight/150*9), danheight/150*43, danheight/150*83, 99, 308);  
+     arc(danx+(danheight/150*33), dany-(danheight/150*8), danheight/150*43, danheight/150*88, 251, 437);
+     //headband
+    strokeWeight(1);
+    fill(168, 136, 136);
+    rect(danx+(danheight/150*-56), dany-(danheight/150*32), danheight/150*112, danheight/150*11,4);
+    };
+var bitmojiBody = function(danx, dany, danheight){
+    //Torso
+ fill(0, 204, 255);
+ rect(danx+(danheight/150*-34),dany+(danheight/150*55),danheight/150*67,danheight/150*120,20);
+ fill(255, 255, 255);
+ text("D.T.",danx+(danheight/150*-11),dany+(danheight/150*92));
+ //Arms
+ fill(0, 204, 255);
+ rect(danx+(danheight/150*-58),dany+(danheight/150*66),danheight/150*26,danheight/150*30,5);
+ rect(danx+(danheight/150*30),dany+(danheight/150*66),danheight/150*26,danheight/150*30,5);
+ stroke(255, 252, 219);
+ fill(255,252,219);
+ rect(danx+(danheight/150*-55),dany+(danheight/150*95),danheight/150*20,danheight/150*61);
+ rect(danx+(danheight/150*33),dany+(danheight/150*95),danheight/150*20,danheight/150*61);
+ ellipse(danx+(danheight/150*-43),dany+(danheight/150*167),danheight/150*17,danheight/150*36);
+ ellipse(danx+(danheight/150*43),dany+(danheight/150*167),danheight/150*17,danheight/150*36);
+    };
+var drawBitmoji = function(danx, dany, danheight) {
+        bitmojiHead(danx,dany,danheight);
+        bitmojiBody(danx,dany,danheight);
+    };
+    
+    drawBitmoji(270,305,87);
+var drawBitmoji = function(x,y) {
+    var bitmojiPosition = 150;
+        noStroke();
+        fill(201, 201, 201);
+        ellipse(x-(bitmojiPosition/150*1),y+(bitmojiPosition/150*39),bitmojiPosition/150*74,bitmojiPosition/150*20);
+        ellipse(x-(bitmojiPosition/150*1),y+(bitmojiPosition/150*80),bitmojiPosition/150*93,bitmojiPosition/150*95);
+    // sweatshirt
+    
+        noStroke();
+        fill(255,224,189);
+        ellipse(x-(bitmojiPosition/150*1),y-(bitmojiPosition/150*7),bitmojiPosition/150*68,bitmojiPosition/150*94); // head
+    
+        fill(0,0,0);
+        ellipse(x-(bitmojiPosition/150*1),y-(bitmojiPosition/150*33),bitmojiPosition/150*70,bitmojiPosition/150*42); // hat
+    
+        fill(115, 78, 78);
+        ellipse(x+(bitmojiPosition/150*4),y-(bitmojiPosition/150*25),bitmojiPosition/150*75,bitmojiPosition/150*30); 
+        ellipse(x-(bitmojiPosition/150*30),y-(bitmojiPosition/150*10),bitmojiPosition/150*22,bitmojiPosition/150*45);
+        ellipse(x+(bitmojiPosition/150*35),y-(bitmojiPosition/150*4),bitmojiPosition/150*10,bitmojiPosition/150*29); // hair
+    
+        stroke(0,0,0);
+        fill(255,224,189);
+        ellipse(x-(bitmojiPosition/150*10),y-(bitmojiPosition/150*1),bitmojiPosition/150*19,bitmojiPosition/150*14);
+        ellipse(x+(bitmojiPosition/150*19),y-(bitmojiPosition/150*1),bitmojiPosition/150*19,bitmojiPosition/150*14);
+        line(x+(bitmojiPosition/150*8),y-(bitmojiPosition/150*2),x-(bitmojiPosition/150*1),y-(bitmojiPosition/150*2)); // glasses
+    
+        fill(48, 120, 66);
+        ellipse(x-(bitmojiPosition/150*10),y-(bitmojiPosition/150*1),bitmojiPosition/150*6,bitmojiPosition/150*4);
+        ellipse(x+(bitmojiPosition/150*18),y-(bitmojiPosition/150*1),bitmojiPosition/150*6,bitmojiPosition/150*4); // eyes
+    
+        fill(255,224,189);
+        bezier(x+(bitmojiPosition/150*7),y-(bitmojiPosition/150*1),x+(bitmojiPosition/150*20),y+(bitmojiPosition/150*22),x-(bitmojiPosition/150*7),y+(bitmojiPosition/150*12),x+(bitmojiPosition/150*2),y+(bitmojiPosition/150*11)); //nose
+    
+        fill(240, 168, 198);
+        arc(x+(bitmojiPosition/150*4),y+(bitmojiPosition/150*22),bitmojiPosition/150*24,bitmojiPosition/150*7,bitmojiPosition/150*30,bitmojiPosition/150*146); // mouth
+    
+        fill(0, 0, 0);
+        line(x-(bitmojiPosition/150*21),y+(bitmojiPosition/150*49),x-(bitmojiPosition/150*21),y+(bitmojiPosition/150*69));
+        line(x-(bitmojiPosition/150*9),y+(bitmojiPosition/150*49),x-(bitmojiPosition/150*22),y+(bitmojiPosition/150*66));
+        line(x-(bitmojiPosition/150*20),y+(bitmojiPosition/150*60),x-(bitmojiPosition/150*8),y+(bitmojiPosition/150*69)); // k initial
+    
+        fill(0,0,0);
+        line(x+(bitmojiPosition/150*9),y+(bitmojiPosition/150*49),x+(bitmojiPosition/150*9),y+(bitmojiPosition/150*68));
+        fill(201, 201, 201);
+        arc(x+(bitmojiPosition/150*11),y+(bitmojiPosition/150*81),bitmojiPosition/150*38,bitmojiPosition/150*64,bitmojiPosition/150*273,bitmojiPosition/150*311);
+        arc(x+(bitmojiPosition/150*17),y+(bitmojiPosition/150*94),bitmojiPosition/150*32,bitmojiPosition/150*74,bitmojiPosition/150*255,bitmojiPosition/150*409);
+        line(x+(bitmojiPosition/150*9),y+(bitmojiPosition/150*67),x+(bitmojiPosition/150*28),y+(bitmojiPosition/150*68)); // b initial
+    };
+    drawBitmoji(140,320,100);
+    fill(0, 0, 0);
+    textSize(25);
+    text("Nice! You got",125,150);
+    text("Score: " + score, 135, 200);
+    text("/ 5", 235, 200);
+};
+
+//VIDEOGAMES ENDSCREEN
+var videogamesEndScreen = function() {
+    currentScene = "videogames_endscene";
+    background(247, 255, 0);
+
+var bitmojiHead = function(danx, dany, danheight) {
+    //Head
+    fill(255, 252, 219);
+    ellipse(danx,dany,danheight/150*80,danheight/150*108);
+    //Face
+    fill(255, 255, 255);
+    ellipse(danx-(danheight/150*17),dany+(danheight/150*4),danheight/150*14,danheight/150*10);
+    ellipse(danx+(danheight/150*17),dany+(danheight/150*4),danheight/150*14,danheight/150*10);
+    fill(0, 0, 0);
+    ellipse(danx+(danheight/150*17),dany+(danheight/150*4),danheight/150*5,danheight/150*7);
+    ellipse(danx+(danheight/150*-17),dany+(danheight/150*4),danheight/150*5,danheight/150*7);
+    line(danx+(danheight/150*-15),dany+(danheight/150*32),danx+(danheight/150*10),dany+(danheight/150*34));
+    //Hair
+    strokeWeight(3);
+    fill(3, 1, 1);
+     arc(danx+(danheight/150*1), dany-(danheight/150*29), danheight/150*85, danheight/150*50, 145, 399);  
+     arc(danx+(danheight/150*-1), dany-(danheight/150*26), danheight/150*103, danheight/150*77, 139, 399);
+     arc(danx+(danheight/150*-33), dany-(danheight/150*9), danheight/150*43, danheight/150*83, 99, 308);  
+     arc(danx+(danheight/150*33), dany-(danheight/150*8), danheight/150*43, danheight/150*88, 251, 437);
+     //headband
+    strokeWeight(1);
+    fill(168, 136, 136);
+    rect(danx+(danheight/150*-56), dany-(danheight/150*32), danheight/150*112, danheight/150*11,4);
+    };
+var bitmojiBody = function(danx, dany, danheight){
+    //Torso
+ fill(0, 204, 255);
+ rect(danx+(danheight/150*-34),dany+(danheight/150*55),danheight/150*67,danheight/150*120,20);
+ fill(255, 255, 255);
+ text("D.T.",danx+(danheight/150*-11),dany+(danheight/150*92));
+ //Arms
+ fill(0, 204, 255);
+ rect(danx+(danheight/150*-58),dany+(danheight/150*66),danheight/150*26,danheight/150*30,5);
+ rect(danx+(danheight/150*30),dany+(danheight/150*66),danheight/150*26,danheight/150*30,5);
+ stroke(255, 252, 219);
+ fill(255,252,219);
+ rect(danx+(danheight/150*-55),dany+(danheight/150*95),danheight/150*20,danheight/150*61);
+ rect(danx+(danheight/150*33),dany+(danheight/150*95),danheight/150*20,danheight/150*61);
+ ellipse(danx+(danheight/150*-43),dany+(danheight/150*167),danheight/150*17,danheight/150*36);
+ ellipse(danx+(danheight/150*43),dany+(danheight/150*167),danheight/150*17,danheight/150*36);
+    };
+var drawBitmoji = function(danx, dany, danheight) {
+        bitmojiHead(danx,dany,danheight);
+        bitmojiBody(danx,dany,danheight);
+    };
+    
+    drawBitmoji(270,305,87);
+var drawBitmoji = function(x,y) {
+    var bitmojiPosition = 150;
+        noStroke();
+        fill(201, 201, 201);
+        ellipse(x-(bitmojiPosition/150*1),y+(bitmojiPosition/150*39),bitmojiPosition/150*74,bitmojiPosition/150*20);
+        ellipse(x-(bitmojiPosition/150*1),y+(bitmojiPosition/150*80),bitmojiPosition/150*93,bitmojiPosition/150*95);
+    // sweatshirt
+    
+        noStroke();
+        fill(255,224,189);
+        ellipse(x-(bitmojiPosition/150*1),y-(bitmojiPosition/150*7),bitmojiPosition/150*68,bitmojiPosition/150*94); // head
+    
+        fill(0,0,0);
+        ellipse(x-(bitmojiPosition/150*1),y-(bitmojiPosition/150*33),bitmojiPosition/150*70,bitmojiPosition/150*42); // hat
+    
+        fill(115, 78, 78);
+        ellipse(x+(bitmojiPosition/150*4),y-(bitmojiPosition/150*25),bitmojiPosition/150*75,bitmojiPosition/150*30); 
+        ellipse(x-(bitmojiPosition/150*30),y-(bitmojiPosition/150*10),bitmojiPosition/150*22,bitmojiPosition/150*45);
+        ellipse(x+(bitmojiPosition/150*35),y-(bitmojiPosition/150*4),bitmojiPosition/150*10,bitmojiPosition/150*29); // hair
+    
+        stroke(0,0,0);
+        fill(255,224,189);
+        ellipse(x-(bitmojiPosition/150*10),y-(bitmojiPosition/150*1),bitmojiPosition/150*19,bitmojiPosition/150*14);
+        ellipse(x+(bitmojiPosition/150*19),y-(bitmojiPosition/150*1),bitmojiPosition/150*19,bitmojiPosition/150*14);
+        line(x+(bitmojiPosition/150*8),y-(bitmojiPosition/150*2),x-(bitmojiPosition/150*1),y-(bitmojiPosition/150*2)); // glasses
+    
+        fill(48, 120, 66);
+        ellipse(x-(bitmojiPosition/150*10),y-(bitmojiPosition/150*1),bitmojiPosition/150*6,bitmojiPosition/150*4);
+        ellipse(x+(bitmojiPosition/150*18),y-(bitmojiPosition/150*1),bitmojiPosition/150*6,bitmojiPosition/150*4); // eyes
+    
+        fill(255,224,189);
+        bezier(x+(bitmojiPosition/150*7),y-(bitmojiPosition/150*1),x+(bitmojiPosition/150*20),y+(bitmojiPosition/150*22),x-(bitmojiPosition/150*7),y+(bitmojiPosition/150*12),x+(bitmojiPosition/150*2),y+(bitmojiPosition/150*11)); //nose
+    
+        fill(240, 168, 198);
+        arc(x+(bitmojiPosition/150*4),y+(bitmojiPosition/150*22),bitmojiPosition/150*24,bitmojiPosition/150*7,bitmojiPosition/150*30,bitmojiPosition/150*146); // mouth
+    
+        fill(0, 0, 0);
+        line(x-(bitmojiPosition/150*21),y+(bitmojiPosition/150*49),x-(bitmojiPosition/150*21),y+(bitmojiPosition/150*69));
+        line(x-(bitmojiPosition/150*9),y+(bitmojiPosition/150*49),x-(bitmojiPosition/150*22),y+(bitmojiPosition/150*66));
+        line(x-(bitmojiPosition/150*20),y+(bitmojiPosition/150*60),x-(bitmojiPosition/150*8),y+(bitmojiPosition/150*69)); // k initial
+    
+        fill(0,0,0);
+        line(x+(bitmojiPosition/150*9),y+(bitmojiPosition/150*49),x+(bitmojiPosition/150*9),y+(bitmojiPosition/150*68));
+        fill(201, 201, 201);
+        arc(x+(bitmojiPosition/150*11),y+(bitmojiPosition/150*81),bitmojiPosition/150*38,bitmojiPosition/150*64,bitmojiPosition/150*273,bitmojiPosition/150*311);
+        arc(x+(bitmojiPosition/150*17),y+(bitmojiPosition/150*94),bitmojiPosition/150*32,bitmojiPosition/150*74,bitmojiPosition/150*255,bitmojiPosition/150*409);
+        line(x+(bitmojiPosition/150*9),y+(bitmojiPosition/150*67),x+(bitmojiPosition/150*28),y+(bitmojiPosition/150*68)); // b initial
+    };
+    drawBitmoji(140,320,100);
+    fill(0, 0, 0);
+    textSize(25);
+    text("Nice! You got",125,150);
+    text("Score: " + score, 135, 200);
+    text("/ 5", 235, 200);
+};
+//CULTURE ENDSCREEN
+var cultureEndScreen = function() {
+    currentScene = "culture_endscene";
+    background(247, 255, 0);
+
+var bitmojiHead = function(danx, dany, danheight) {
+    //Head
+    fill(255, 252, 219);
+    ellipse(danx,dany,danheight/150*80,danheight/150*108);
+    //Face
+    fill(255, 255, 255);
+    ellipse(danx-(danheight/150*17),dany+(danheight/150*4),danheight/150*14,danheight/150*10);
+    ellipse(danx+(danheight/150*17),dany+(danheight/150*4),danheight/150*14,danheight/150*10);
+    fill(0, 0, 0);
+    ellipse(danx+(danheight/150*17),dany+(danheight/150*4),danheight/150*5,danheight/150*7);
+    ellipse(danx+(danheight/150*-17),dany+(danheight/150*4),danheight/150*5,danheight/150*7);
+    line(danx+(danheight/150*-15),dany+(danheight/150*32),danx+(danheight/150*10),dany+(danheight/150*34));
+    //Hair
+    strokeWeight(3);
+    fill(3, 1, 1);
+     arc(danx+(danheight/150*1), dany-(danheight/150*29), danheight/150*85, danheight/150*50, 145, 399);  
+     arc(danx+(danheight/150*-1), dany-(danheight/150*26), danheight/150*103, danheight/150*77, 139, 399);
+     arc(danx+(danheight/150*-33), dany-(danheight/150*9), danheight/150*43, danheight/150*83, 99, 308);  
+     arc(danx+(danheight/150*33), dany-(danheight/150*8), danheight/150*43, danheight/150*88, 251, 437);
+     //headband
+    strokeWeight(1);
+    fill(168, 136, 136);
+    rect(danx+(danheight/150*-56), dany-(danheight/150*32), danheight/150*112, danheight/150*11,4);
+    };
+var bitmojiBody = function(danx, dany, danheight){
+    //Torso
+ fill(0, 204, 255);
+ rect(danx+(danheight/150*-34),dany+(danheight/150*55),danheight/150*67,danheight/150*120,20);
+ fill(255, 255, 255);
+ text("D.T.",danx+(danheight/150*-11),dany+(danheight/150*92));
+ //Arms
+ fill(0, 204, 255);
+ rect(danx+(danheight/150*-58),dany+(danheight/150*66),danheight/150*26,danheight/150*30,5);
+ rect(danx+(danheight/150*30),dany+(danheight/150*66),danheight/150*26,danheight/150*30,5);
+ stroke(255, 252, 219);
+ fill(255,252,219);
+ rect(danx+(danheight/150*-55),dany+(danheight/150*95),danheight/150*20,danheight/150*61);
+ rect(danx+(danheight/150*33),dany+(danheight/150*95),danheight/150*20,danheight/150*61);
+ ellipse(danx+(danheight/150*-43),dany+(danheight/150*167),danheight/150*17,danheight/150*36);
+ ellipse(danx+(danheight/150*43),dany+(danheight/150*167),danheight/150*17,danheight/150*36);
+    };
+var drawBitmoji = function(danx, dany, danheight) {
+        bitmojiHead(danx,dany,danheight);
+        bitmojiBody(danx,dany,danheight);
+    };
+    
+    drawBitmoji(270,305,87);
+var drawBitmoji = function(x,y) {
+    var bitmojiPosition = 150;
+        noStroke();
+        fill(201, 201, 201);
+        ellipse(x-(bitmojiPosition/150*1),y+(bitmojiPosition/150*39),bitmojiPosition/150*74,bitmojiPosition/150*20);
+        ellipse(x-(bitmojiPosition/150*1),y+(bitmojiPosition/150*80),bitmojiPosition/150*93,bitmojiPosition/150*95);
+    // sweatshirt
+    
+        noStroke();
+        fill(255,224,189);
+        ellipse(x-(bitmojiPosition/150*1),y-(bitmojiPosition/150*7),bitmojiPosition/150*68,bitmojiPosition/150*94); // head
+    
+        fill(0,0,0);
+        ellipse(x-(bitmojiPosition/150*1),y-(bitmojiPosition/150*33),bitmojiPosition/150*70,bitmojiPosition/150*42); // hat
+    
+        fill(115, 78, 78);
+        ellipse(x+(bitmojiPosition/150*4),y-(bitmojiPosition/150*25),bitmojiPosition/150*75,bitmojiPosition/150*30); 
+        ellipse(x-(bitmojiPosition/150*30),y-(bitmojiPosition/150*10),bitmojiPosition/150*22,bitmojiPosition/150*45);
+        ellipse(x+(bitmojiPosition/150*35),y-(bitmojiPosition/150*4),bitmojiPosition/150*10,bitmojiPosition/150*29); // hair
+    
+        stroke(0,0,0);
+        fill(255,224,189);
+        ellipse(x-(bitmojiPosition/150*10),y-(bitmojiPosition/150*1),bitmojiPosition/150*19,bitmojiPosition/150*14);
+        ellipse(x+(bitmojiPosition/150*19),y-(bitmojiPosition/150*1),bitmojiPosition/150*19,bitmojiPosition/150*14);
+        line(x+(bitmojiPosition/150*8),y-(bitmojiPosition/150*2),x-(bitmojiPosition/150*1),y-(bitmojiPosition/150*2)); // glasses
+    
+        fill(48, 120, 66);
+        ellipse(x-(bitmojiPosition/150*10),y-(bitmojiPosition/150*1),bitmojiPosition/150*6,bitmojiPosition/150*4);
+        ellipse(x+(bitmojiPosition/150*18),y-(bitmojiPosition/150*1),bitmojiPosition/150*6,bitmojiPosition/150*4); // eyes
+    
+        fill(255,224,189);
+        bezier(x+(bitmojiPosition/150*7),y-(bitmojiPosition/150*1),x+(bitmojiPosition/150*20),y+(bitmojiPosition/150*22),x-(bitmojiPosition/150*7),y+(bitmojiPosition/150*12),x+(bitmojiPosition/150*2),y+(bitmojiPosition/150*11)); //nose
+    
+        fill(240, 168, 198);
+        arc(x+(bitmojiPosition/150*4),y+(bitmojiPosition/150*22),bitmojiPosition/150*24,bitmojiPosition/150*7,bitmojiPosition/150*30,bitmojiPosition/150*146); // mouth
+    
+        fill(0, 0, 0);
+        line(x-(bitmojiPosition/150*21),y+(bitmojiPosition/150*49),x-(bitmojiPosition/150*21),y+(bitmojiPosition/150*69));
+        line(x-(bitmojiPosition/150*9),y+(bitmojiPosition/150*49),x-(bitmojiPosition/150*22),y+(bitmojiPosition/150*66));
+        line(x-(bitmojiPosition/150*20),y+(bitmojiPosition/150*60),x-(bitmojiPosition/150*8),y+(bitmojiPosition/150*69)); // k initial
+    
+        fill(0,0,0);
+        line(x+(bitmojiPosition/150*9),y+(bitmojiPosition/150*49),x+(bitmojiPosition/150*9),y+(bitmojiPosition/150*68));
+        fill(201, 201, 201);
+        arc(x+(bitmojiPosition/150*11),y+(bitmojiPosition/150*81),bitmojiPosition/150*38,bitmojiPosition/150*64,bitmojiPosition/150*273,bitmojiPosition/150*311);
+        arc(x+(bitmojiPosition/150*17),y+(bitmojiPosition/150*94),bitmojiPosition/150*32,bitmojiPosition/150*74,bitmojiPosition/150*255,bitmojiPosition/150*409);
+        line(x+(bitmojiPosition/150*9),y+(bitmojiPosition/150*67),x+(bitmojiPosition/150*28),y+(bitmojiPosition/150*68)); // b initial
+    };
+    drawBitmoji(140,320,100);
+    fill(0, 0, 0);
+    textSize(25);
+    text("Nice! You got",125,150);
+    text("Score: " + score, 135, 200);
+    text("/ 5", 235, 200);
+};
+
+//QUESTION 5 culture
+var cultureScene5 = function() {
+    currentScene = "culture_scene5";
+    background(151, 115, 230);
+    fill(211, 164, 242);
+    rect(23,19,353,362);
+    textSize(15);
+    fill(0, 0, 0);
+    //Questions
+    text("Question 5",160,60);
+    text("What percentage of the world population",60,90);
+    text("uses the internet?", 140, 110);
+    
+var cultureScene5wrong = function() {
+    currentScene = "culture_scene5wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+    
+    draw = function() {
+         if(currentScene === "culture_scene5wrong") {
+             if(mouseIsPressed && isMouseInside(culturebtn_return)) {
+                cultureEndScreen();
+             }
+         }
+    };
+    };
+var cultureScene5correct = function() {
+    currentScene = "culture_scene4correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+    draw = function() {
+         if(currentScene === "culture_scene4correct") {
+             if(mouseIsPressed && isMouseInside(culturebtn_return)) {
+                cultureEndScreen();
+             }
+         }
+    };
+};
+draw = function() {
+    if(currentScene === "culture_scene5") {
+        if(mouseIsPressed && isMouseInside(culturebtn5)) {
+            cultureScene5correct();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn5wrong1)) {
+            cultureScene5wrong();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn5wrong2)) {
+            cultureScene5wrong();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn5wrong3)) {
+            cultureScene5wrong();
+            culturebtn_return.draw();
+            }
+        }
+    };
+};
+
+//QUESTION 5 sports
+var sportsScene5 = function() {
+currentScene = "sports_scene5";
+background(255, 119, 0);
+fill(255, 170, 0);
+rect(23,19,353,362);
+textSize(15);
+fill(0, 0, 0);
+//Questions
+fill(1, 125, 45);
+text("Question 5",165,60);
+fill(0, 0, 0);
+text("The 1980 film “Raging Bull” is", 110, 90);
+text("about which real boxer?",130,110);
+
+var sportsScene5wrong = function() {
+    currentScene = "sports_scene5wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+    
+    draw = function() {
+         if(currentScene === "sports_scene5wrong") {
+             if(mouseIsPressed && isMouseInside(sportsbtn_return)) {
+                sportsEndScreen();
+             }
+         }
+    };
+    };
+var sportsScene5correct = function() {
+    currentScene = "sports_scene4correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+    draw = function() {
+         if(currentScene === "sports_scene4correct") {
+             if(mouseIsPressed && isMouseInside(sportsbtn_return)) {
+                sportsEndScreen();
+             }
+         }
+    };
+};
+draw = function() {
+    if(currentScene === "sports_scene5") {
+        if(mouseIsPressed && isMouseInside(sportsbtn5)) {
+            sportsScene5correct();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn5wrong1)) {
+            sportsScene5wrong();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn5wrong2)) {
+            sportsScene5wrong();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn5wrong3)) {
+            sportsScene5wrong();
+            sportsbtn_return.draw();
+            }
+        }
+    };
+};
+
+//QUESTION 5 videogames
+var videogamesScene5 = function() {
+    currentScene = "videogames_scene5";
+    background(64, 184, 166);
+    fill(0, 255, 213);
+    rect(23,19,353,362);
+    textSize(15);
+    fill(0, 0, 0);
+    //Questions
+    fill(1, 125, 45);
+    text("Question 5",165,60);
+    fill(0, 0, 0);
+    text("What was the most successful game",75,90);
+    text("for the Nintendo 3DS?",125,110);
+    
+    var videogamesScene5wrong = function() {
+    currentScene = "videogames_scene5wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+    
+    draw = function() {
+         if(currentScene === "videogames_scene5wrong") {
+             if(mouseIsPressed && isMouseInside(videogamesbtn_return)) {
+                videogamesEndScreen();
+             }
+         }
+    };
+    };
+var videogamesScene5correct = function() {
+    currentScene = "videogames_scene4correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+    draw = function() {
+         if(currentScene === "videogames_scene4correct") {
+             if(mouseIsPressed && isMouseInside(videogamesbtn_return)) {
+                videogamesEndScreen();
+             }
+         }
+    };
+};
+draw = function() {
+    if(currentScene === "videogames_scene5") {
+        if(mouseIsPressed && isMouseInside(videogamesbtn5)) {
+            videogamesScene5correct();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn5wrong1)) {
+            videogamesScene5wrong();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn5wrong2)) {
+            videogamesScene5wrong();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn5wrong3)) {
+            videogamesScene5wrong();
+            videogamesbtn_return.draw();
+            }
+        }
+    };
+};
+//QUESTION 4 culture
+var cultureScene4 = function() {
+    currentScene = "culture_scene4";
+    background(151, 115, 230);
+    fill(211, 164, 242);
+    rect(23,19,353,362);
+    textSize(15);
+    fill(0, 0, 0);
+    //Questions
+    text("Question 4",160,60);
+    text("What is the most spoken language in the world?",45,100);
+    
+    var cultureScene4wrong = function() {
+    currentScene = "culture_scene4wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+
+    draw = function() {
+         if(currentScene === "culture_scene4wrong") {
+             if(mouseIsPressed && isMouseInside(culturebtn_return)) {
+                cultureScene5();
+                culturebtn5.draw();
+                culturebtn5wrong1.draw();
+                culturebtn5wrong2.draw();
+                culturebtn5wrong3.draw();
+             }
+         }
+    };
+};
+var cultureScene4correct = function() {
+    currentScene = "culture_scene4correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+    draw = function() {
+         if(currentScene === "culture_scene4correct") {
+             if(mouseIsPressed && isMouseInside(culturebtn_return)) {
+                cultureScene5();
+                culturebtn5.draw();
+                culturebtn5wrong1.draw();
+                culturebtn5wrong2.draw();
+                culturebtn5wrong3.draw();
+             }
+         }
+    };
+};
+
+draw = function() {
+    if(currentScene === "culture_scene4") {
+        if(mouseIsPressed && isMouseInside(culturebtn4)) {
+            cultureScene4correct();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn4wrong1)) {
+            cultureScene4wrong();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn4wrong2)) {
+            cultureScene4wrong();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn4wrong3)) {
+            cultureScene4wrong();
+            culturebtn_return.draw();
+            }
+        }
+    };
+};
+
+//QUESTION 4 sports
+var sportsScene4 = function() {
+currentScene = "sports_scene4";
+background(255, 119, 0);
+fill(255, 170, 0);
+rect(23,19,353,362);
+textSize(15);
+fill(0, 0, 0);
+//Questions
+fill(1, 125, 45);
+text("Question 4",165,60);
+fill(0, 0, 0);
+text("What is called when you get three strikes", 60, 90);
+text("in a row in bowling?",145,110);
+
+var sportsScene4wrong = function() {
+    currentScene = "sports_scene4wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+    
+draw = function() {
+         if(currentScene === "sports_scene4wrong") {
+             if(mouseIsPressed && isMouseInside(sportsbtn_return)) {
+                sportsScene5();
+                sportsbtn5.draw();
+                sportsbtn5wrong1.draw();
+                sportsbtn5wrong2.draw();
+                sportsbtn5wrong3.draw();
+             }
+         }
+    };
+};
+
+var sportsScene4correct = function() {
+    currentScene = "sports_scene4correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+    draw = function() {
+         if(currentScene === "sports_scene4correct") {
+             if(mouseIsPressed && isMouseInside(sportsbtn_return)) {
+                sportsScene5();
+                sportsbtn5.draw();
+                sportsbtn5wrong1.draw();
+                sportsbtn5wrong2.draw();
+                sportsbtn5wrong3.draw();
+             }
+         }
+    };
+};
+
+draw = function() {
+    if(currentScene === "sports_scene4") {
+        if(mouseIsPressed && isMouseInside(sportsbtn4)) {
+            sportsScene4correct();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn4wrong1)) {
+            sportsScene4wrong();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn4wrong2)) {
+            sportsScene4wrong();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn4wrong3)) {
+            sportsScene4wrong();
+            sportsbtn_return.draw();
+            }
+        }
+    };
+};
+
+//QUESTION 4 videogames
+var videogamesScene4 = function() {
+    currentScene = "videogames_scene4";
+    background(64, 184, 166);
+    fill(0, 255, 213);
+    rect(23,19,353,362);
+    textSize(15);
+    fill(0, 0, 0);
+    //Questions
+    fill(1, 125, 45);
+    text("Question 4",165,60);
+    fill(0, 0, 0);
+    text("What is the best selling handheld",90,90);
+    text("game console ever?",135,110);
+    
+var videogamesScene4wrong = function() {
+    currentScene = "videogames_scene4wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+
+    draw = function() {
+         if(currentScene === "videogames_scene4wrong") {
+             if(mouseIsPressed && isMouseInside(videogamesbtn_return)) {
+                videogamesScene5();
+                videogamesbtn5.draw();
+                videogamesbtn5wrong1.draw();
+                videogamesbtn5wrong2.draw();
+                videogamesbtn5wrong3.draw();
+             }
+         }
+    };
+};
+var videogamesScene4correct = function() {
+    currentScene = "videogames_scene4correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+    draw = function() {
+         if(currentScene === "videogames_scene4correct") {
+             if(mouseIsPressed && isMouseInside(videogamesbtn_return)) {
+                videogamesScene5();
+                videogamesbtn5.draw();
+                videogamesbtn5wrong1.draw();
+                videogamesbtn5wrong2.draw();
+                videogamesbtn5wrong3.draw();
+             }
+         }
+    };
+};
+
+draw = function() {
+    if(currentScene === "videogames_scene4") {
+        if(mouseIsPressed && isMouseInside(videogamesbtn4)) {
+            videogamesScene4correct();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn4wrong1)) {
+            videogamesScene4wrong();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn4wrong2)) {
+            videogamesScene4wrong();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn4wrong3)) {
+            videogamesScene4wrong();
+            videogamesbtn_return.draw();
+            }
+        }
+    };
+};
+
+//QUESTION 3 culture
+var cultureScene3 = function() {
+    currentScene = "culture_scene3";
+    background(151, 115, 230);
+    fill(211, 164, 242);
+    rect(23,19,353,362);
+    textSize(15);
+    fill(0, 0, 0);
+    //Questions
+    text("Question 3",160,60);
+    textSize(14);
+    text("Who was the most streamed artist on Spotify in 2021?",35,100);
+    
+    var cultureScene3wrong = function() {
+    currentScene = "culture_scene3wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+    
+draw = function() {
+         if(currentScene === "culture_scene3wrong") {
+             if(mouseIsPressed && isMouseInside(culturebtn_return)) {
+                cultureScene4();
+                culturebtn4.draw();
+                culturebtn4wrong1.draw();
+                culturebtn4wrong2.draw();
+                culturebtn4wrong3.draw();
+             }
+         }
+    };
+};
+var cultureScene3correct = function() {
+    currentScene = "culture_scene3correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+    draw = function() {
+         if(currentScene === "culture_scene3correct") {
+             if(mouseIsPressed && isMouseInside(culturebtn_return)) {
+                cultureScene4();
+                culturebtn4.draw();
+                culturebtn4wrong1.draw();
+                culturebtn4wrong2.draw();
+                culturebtn4wrong3.draw();
+            }
+        }
+    };
+};
+
+draw = function() {
+    if(currentScene === "culture_scene3") {
+        if(mouseIsPressed && isMouseInside(culturebtn3)) {
+            cultureScene3correct();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn3wrong1)) {
+            cultureScene3wrong();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn3wrong2)) {
+            cultureScene3wrong();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn3wrong3)) {
+            cultureScene3wrong();
+            culturebtn_return.draw();
+            }
+        }
+    };
+};
+
+//QUESTION 3 sports
+var sportsScene3 = function() {
+currentScene = "sports_scene3";
+background(255, 119, 0);
+fill(255, 170, 0);
+rect(23,19,353,362);
+textSize(15);
+fill(0, 0, 0);
+//Questions
+fill(1, 125, 45);
+text("Question 3",165,60);
+fill(0, 0, 0);
+text("Who is the coach of the", 130, 90);
+text("URI Men’s Basketball team?",110,110);
+
+var sportsScene3wrong = function() {
+    currentScene = "sports_scene3wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+    
+draw = function() {
+         if(currentScene === "sports_scene3wrong") {
+             if(mouseIsPressed && isMouseInside(sportsbtn_return)) {
+                sportsScene4();
+                sportsbtn4.draw();
+                sportsbtn4wrong1.draw();
+                sportsbtn4wrong2.draw();
+                sportsbtn4wrong3.draw();
+             }
+         }
+    };
+};
+var sportsScene3correct = function() {
+    currentScene = "sports_scene3correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+    draw = function() {
+         if(currentScene === "sports_scene3correct") {
+             if(mouseIsPressed && isMouseInside(sportsbtn_return)) {
+                sportsScene4();
+                sportsbtn4.draw();
+                sportsbtn4wrong1.draw();
+                sportsbtn4wrong2.draw();
+                sportsbtn4wrong3.draw();
+            }
+        }
+    };
+};
+draw = function() {
+    if(currentScene === "sports_scene3") {
+        if(mouseIsPressed && isMouseInside(sportsbtn3)) {
+            sportsScene3correct();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn3wrong1)) {
+            sportsScene3wrong();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn3wrong2)) {
+            sportsScene3wrong();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn3wrong3)) {
+            sportsScene3wrong();
+            sportsbtn_return.draw();
+            }
+        }
+    };
+};
+
+//QUESTION 3 videogames
+var videogamesScene3 = function() {
+    currentScene = "videogames_scene3";
+    background(64, 184, 166);
+    fill(0, 255, 213);
+    rect(23,19,353,362);
+    textSize(15);
+    fill(0, 0, 0);
+    //Questions
+    fill(1, 125, 45);
+    text("Question 3",165,60);
+    fill(0, 0, 0);
+    text("Which region is the starter Oshawott from",55,90);
+    text("in Pokemon games?",130,110);
+    
+var videogamesScene3wrong = function() {
+    currentScene = "videogames_scene3wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+
+draw = function() {
+         if(currentScene === "videogames_scene3wrong") {
+             if(mouseIsPressed && isMouseInside(videogamesbtn_return)) {
+                videogamesScene4();
+                videogamesbtn4.draw();
+                videogamesbtn4wrong1.draw();
+                videogamesbtn4wrong2.draw();
+                videogamesbtn4wrong3.draw();
+             }
+         }
+    };
+};
+    
+var videogamesScene3correct = function() {
+    currentScene = "videogames_scene3correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+    draw = function() {
+         if(currentScene === "videogames_scene3correct") {
+             if(mouseIsPressed && isMouseInside(videogamesbtn_return)) {
+                videogamesScene4();
+                videogamesbtn4.draw();
+                videogamesbtn4wrong1.draw();
+                videogamesbtn4wrong2.draw();
+                videogamesbtn4wrong3.draw();
+             }
+         }
+    };
+
+};
+
+draw = function() {
+    if(currentScene === "videogames_scene3") {
+        if(mouseIsPressed && isMouseInside(videogamesbtn3)) {
+            videogamesScene3correct();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn3wrong1)) {
+            videogamesScene3wrong();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn3wrong2)) {
+            videogamesScene3wrong();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn3wrong3)) {
+            videogamesScene3wrong();
+            videogamesbtn_return.draw();
+            }
+        }
+    };
+};
+//QUESTION 2 culture
+var cultureScene2 = function() {
+    currentScene = "culture_scene2";
+    background(151, 115, 230);
+    fill(211, 164, 242);
+    rect(23,19,353,362);
+    textSize(15);
+    fill(0, 0, 0);
+    //Questions
+    text("Question 2",160,60);
+    text("What is the most downloaded social media app",45,90);
+    text("in the United States?",130,110);
+    
+var cultureScene2wrong = function() {
+    currentScene = "culture_scene2wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+
+draw = function() {
+         if(currentScene === "culture_scene2wrong") {
+             if(mouseIsPressed && isMouseInside(culturebtn_return)) {
+                cultureScene3();
+                culturebtn3.draw();
+                culturebtn3wrong1.draw();
+                culturebtn3wrong2.draw();
+                culturebtn3wrong3.draw();
+             }
+         }
+    };
+};
+
+var cultureScene2correct = function() {
+    currentScene = "culture_scene2correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+draw = function() {
+         if(currentScene === "culture_scene2correct") {
+             if(mouseIsPressed && isMouseInside(culturebtn_return)) {
+                cultureScene3();
+                culturebtn3.draw();
+                culturebtn3wrong1.draw();
+                culturebtn3wrong2.draw();
+                culturebtn3wrong3.draw();
+             }
+         }
+    };
+};
+
+draw = function() {
+    if(currentScene === "culture_scene2") {
+        if(mouseIsPressed && isMouseInside(culturebtn2)) {
+            cultureScene2correct();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn2wrong1)) {
+            cultureScene2wrong();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn2wrong2)) {
+            cultureScene2wrong();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn2wrong3)) {
+            cultureScene2wrong();
+            culturebtn_return.draw();
+            }
+        }
+    };
+};
+
+//QUESTION 2 sports
+var sportsScene2 = function() {
+    currentScene = "sports_scene2";
+    background(255, 119, 0);
+    fill(255, 170, 0);
+rect(23,19,353,362);
+textSize(15);
+fill(0, 0, 0);
+//Questions
+fill(1, 125, 45);
+text("Question 2",165,60);
+fill(0, 0, 0);
+text("How many gold medals did the United States", 50, 90);
+text("win in the 2020 Summer Olympics?",80,110);
+
+var sportsScene2wrong = function() {
+    currentScene = "sports_scene2wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+
+draw = function() {
+         if(currentScene === "sports_scene2wrong") {
+             if(mouseIsPressed && isMouseInside(sportsbtn_return)) {
+                sportsScene3();
+                sportsbtn3.draw();
+                sportsbtn3wrong1.draw();
+                sportsbtn3wrong2.draw();
+                sportsbtn3wrong3.draw();
+             }
+         }
+    };
+};
+
+var sportsScene2correct = function() {
+    currentScene = "sports_scene2correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+draw = function() {
+         if(currentScene === "sports_scene2correct") {
+             if(mouseIsPressed && isMouseInside(sportsbtn_return)) {
+                sportsScene3();
+                sportsbtn3.draw();
+                sportsbtn3wrong1.draw();
+                sportsbtn3wrong2.draw();
+                sportsbtn3wrong3.draw();
+             }
+         }
+    };
+};
+
+draw = function() {
+    if(currentScene === "sports_scene2") {
+        if(mouseIsPressed && isMouseInside(sportsbtn2)) {
+            sportsScene2correct();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn2wrong1)) {
+            sportsScene2wrong();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn2wrong2)) {
+            sportsScene2wrong();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn2wrong3)) {
+            sportsScene2wrong();
+            sportsbtn_return.draw();
+            }
+        }
+    };
+};
+
+//QUESTION 2 videogames
+var videogamesScene2 = function() {
+    currentScene = "videogames_scene2";
+    background(64, 184, 166);
+    fill(0, 255, 213);
+    rect(23,19,353,362);
+    textSize(15);
+    fill(0, 0, 0);
+    //Questions
+    fill(1, 125, 45);
+    text("Question 2",165,60);
+    fill(0, 0, 0);
+    text("What was the first consumer video game console?",35,100);
+    
+var videogamesScene2wrong = function() {
+    currentScene = "videogames_scene2wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+    
+    draw = function() {
+         if(currentScene === "videogames_scene2wrong") {
+             if(mouseIsPressed && isMouseInside(videogamesbtn_return)) {
+                videogamesScene3();
+                videogamesbtn3.draw();
+                videogamesbtn3wrong1.draw();
+                videogamesbtn3wrong2.draw();
+                videogamesbtn3wrong3.draw();
+             }
+         }
+    };
+};
+
+
+var videogamesScene2correct = function() {
+    currentScene = "videogames_scene2correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+    draw = function() {
+         if(currentScene === "videogames_scene2correct") {
+             if(mouseIsPressed && isMouseInside(videogamesbtn_return)) {
+                videogamesScene3();
+                videogamesbtn3.draw();
+                videogamesbtn3wrong1.draw();
+                videogamesbtn3wrong2.draw();
+                videogamesbtn3wrong3.draw();
+             }
+         }
+    };
+};
+
+
+draw = function() {
+    if(currentScene === "videogames_scene2") {
+        if(mouseIsPressed && isMouseInside(videogamesbtn2)) {
+            videogamesScene2correct();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn2wrong1)) {
+            videogamesScene2wrong();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn2wrong2)) {
+            videogamesScene2wrong();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn2wrong3)) {
+            videogamesScene2wrong();
+            videogamesbtn_return.draw();
+            }
+        }
+    };
+};
+//QUESTION 1 videogames
+var videogamesScene1 = function() {
+currentScene = "videogames_scene1";
+background(64, 184, 166);
+fill(0, 255, 213);
+rect(23,19,353,362);
+textSize(15);
+fill(0, 0, 0);
+//Questions
+fill(1, 125, 45);
+text("Question 1",165,60);
+fill(0, 0, 0);
+text("When did the popular game Minecraft release?",45,100);
+
+var videogamesScene1wrong = function() {
+    currentScene = "videogames_scene1wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+    
+    draw = function() {
+         if(currentScene === "videogames_scene1wrong") {
+             if(mouseIsPressed && isMouseInside(videogamesbtn_return)) {
+                videogamesScene2();
+                videogamesbtn2.draw();
+                videogamesbtn2wrong1.draw();
+                videogamesbtn2wrong2.draw();
+                videogamesbtn2wrong3.draw();
+             }
+         }
+    };
+};
+
+var videogamesScene1correct = function() {
+    currentScene = "videogames_scene1correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+    
+    draw = function() {
+         if(currentScene === "videogames_scene1correct") {
+             if(mouseIsPressed && isMouseInside(videogamesbtn_return)) {
+                videogamesScene2();
+                videogamesbtn2.draw();
+                videogamesbtn2wrong1.draw();
+                videogamesbtn2wrong2.draw();
+                videogamesbtn2wrong3.draw();
+             }
+         }
+    };
+};
+
+
+draw = function() {
+     if(currentScene === "videogames_scene1") {
+            if(mouseIsPressed && isMouseInside(videogamesbtn1)) {
+            videogamesScene1correct();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn1wrong1)) {
+            videogamesScene1wrong();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn1wrong2)) {
+            videogamesScene1wrong();
+            videogamesbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(videogamesbtn1wrong3)) {
+            videogamesScene1wrong();
+            videogamesbtn_return.draw();
+            }
+     }
+    };
+};
+//QUESTION 1 sports
+var sportsScene1 = function() {
+currentScene = "sports_scene1";
+background(255, 119, 0);
+fill(255, 170, 0);
+rect(23,19,353,362);
+textSize(15);
+fill(0, 0, 0);
+//Questions
+fill(1, 125, 45);
+text("Question 1",165,60);
+fill(0, 0, 0);
+text("How many times has Tom Brady won",75,100);
+text("the Super Bowl?",150,120);
+
+var sportsScene1wrong = function() {
+    currentScene = "sports_scene1wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+
+draw = function() {
+         if(currentScene === "sports_scene1wrong") {
+             if(mouseIsPressed && isMouseInside(sportsbtn_return)) {
+                sportsScene2();
+                sportsbtn2.draw();
+                sportsbtn2wrong1.draw();
+                sportsbtn2wrong2.draw();
+                sportsbtn2wrong3.draw();
+             }
+         }
+    };
+};
+
+draw = function() {
+         if(currentScene === "sports_scene1wrong") {
+             if(mouseIsPressed && isMouseInside(sportsbtn_return)) {
+                sportsScene2();
+             }
+         }
+    };
+
+var sportsScene1correct = function() {
+    currentScene = "sports_scene1correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+
+ draw = function() {
+         if(currentScene === "sports_scene1correct") {
+             if(mouseIsPressed && isMouseInside(sportsbtn_return)) {
+                sportsScene2();
+                sportsbtn2.draw();
+                sportsbtn2wrong1.draw();
+                sportsbtn2wrong2.draw();
+                sportsbtn2wrong3.draw();
+             }
+         }
+    };
+};
+
+draw = function() {
+    if(currentScene === "sports_scene1") {
+        if(mouseIsPressed && isMouseInside(sportsbtn1)) {
+            sportsScene1correct();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn1wrong1)) {
+            sportsScene1wrong();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn1wrong2)) {
+            sportsScene1wrong();
+            sportsbtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(sportsbtn1wrong3)) {
+            sportsScene1wrong();
+            sportsbtn_return.draw();
+                }
+            }
+        };
+    };
+//QUESTION 1 culture
+var cultureScene1 = function() {
+    currentScene = "culture_scene1";
+    background(151, 115, 230);
+    fill(211, 164, 242);
+    rect(23,19,353,362);
+    textSize(15);
+    fill(0, 0, 0);
+    //Questions
+    text("Question 1",160,60);
+    text("Which film won best picture at the",90,90); 
+    text("2022 Academy Awards?",125,110);
+    
+    var cultureScene1wrong = function() {
+    currentScene = "culture_scene1wrong";
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Incorrect",100,200);
+
+draw = function() {
+         if(currentScene === "culture_scene1wrong") {
+             if(mouseIsPressed && isMouseInside(culturebtn_return)) {
+                cultureScene2();
+                culturebtn2.draw();
+                culturebtn2wrong1.draw();
+                culturebtn2wrong2.draw();
+                culturebtn2wrong3.draw();
+             }
+         }
+    };
+};
+
+draw = function() {
+         if(currentScene === "culture_scene1wrong") {
+             if(mouseIsPressed && isMouseInside(culturebtn_return)) {
+                cultureScene2();
+             }
+         }
+    };
+
+var cultureScene1correct = function() {
+    currentScene = "culture_scene1correct";
+    background(157, 235, 0);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Correct",125,200);
+    score++;
+
+ draw = function() {
+         if(currentScene === "culture_scene1correct") {
+             if(mouseIsPressed && isMouseInside(culturebtn_return)) {
+                cultureScene2();
+                culturebtn2.draw();
+                culturebtn2wrong1.draw();
+                culturebtn2wrong2.draw();
+                culturebtn2wrong3.draw();
+             }
+         }
+    };
+};
+
+draw = function() {
+    if(currentScene === "culture_scene1") {
+        if(mouseIsPressed && isMouseInside(culturebtn1)) {
+            cultureScene1correct();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn1wrong1)) {
+            cultureScene1wrong();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn1wrong2)) {
+            cultureScene1wrong();
+            culturebtn_return.draw();
+            }
+            if(mouseIsPressed && isMouseInside(culturebtn1wrong3)) {
+            cultureScene1wrong();
+            culturebtn_return.draw();
+                }
+            }
+        };
+    };
+
+//dan bitmoji
+var bitmojiHead = function(danx, dany, danheight) {
+    //Head
+    fill(255, 252, 219);
+    ellipse(danx,dany,danheight/150*80,danheight/150*108);
+    //Face
+    fill(255, 255, 255);
+    ellipse(danx-(danheight/150*17),dany+(danheight/150*4),danheight/150*14,danheight/150*10);
+    ellipse(danx+(danheight/150*17),dany+(danheight/150*4),danheight/150*14,danheight/150*10);
+    fill(0, 0, 0);
+    ellipse(danx+(danheight/150*17),dany+(danheight/150*4),danheight/150*5,danheight/150*7);
+    ellipse(danx+(danheight/150*-17),dany+(danheight/150*4),danheight/150*5,danheight/150*7);
+    line(danx+(danheight/150*-15),dany+(danheight/150*32),danx+(danheight/150*10),dany+(danheight/150*34));
+    //Hair
+    strokeWeight(3);
+    fill(3, 1, 1);
+     arc(danx+(danheight/150*1), dany-(danheight/150*29), danheight/150*85, danheight/150*50, 145, 399);  
+     arc(danx+(danheight/150*-1), dany-(danheight/150*26), danheight/150*103, danheight/150*77, 139, 399);
+     arc(danx+(danheight/150*-33), dany-(danheight/150*9), danheight/150*43, danheight/150*83, 99, 308);  
+     arc(danx+(danheight/150*33), dany-(danheight/150*8), danheight/150*43, danheight/150*88, 251, 437);
+     //headband
+    strokeWeight(1);
+    fill(168, 136, 136);
+    rect(danx+(danheight/150*-56), dany-(danheight/150*32), danheight/150*112, danheight/150*11,4);
+    };
+    var bitmojiBody = function(danx, dany, danheight){
+    //Torso
+ fill(0, 204, 255);
+ rect(danx+(danheight/150*-34),dany+(danheight/150*55),danheight/150*67,danheight/150*120,20);
+ fill(255, 255, 255);
+ text("D.T.",danx+(danheight/150*-11),dany+(danheight/150*92));
+ //Arms
+ fill(0, 204, 255);
+ rect(danx+(danheight/150*-58),dany+(danheight/150*66),danheight/150*26,danheight/150*30,5);
+ rect(danx+(danheight/150*30),dany+(danheight/150*66),danheight/150*26,danheight/150*30,5);
+ stroke(255, 252, 219);
+ fill(255,252,219);
+ rect(danx+(danheight/150*-55),dany+(danheight/150*95),danheight/150*20,danheight/150*61);
+ rect(danx+(danheight/150*33),dany+(danheight/150*95),danheight/150*20,danheight/150*61);
+ ellipse(danx+(danheight/150*-43),dany+(danheight/150*167),danheight/150*17,danheight/150*36);
+ ellipse(danx+(danheight/150*43),dany+(danheight/150*167),danheight/150*17,danheight/150*36);
+    };
+var drawBitmoji = function(danx, dany, danheight) {
+        bitmojiHead(danx,dany,danheight);
+        bitmojiBody(danx,dany,danheight);
+    };
+drawBitmoji(280,137,87);
+
+//katie bitmoji
+var drawBitmoji = function(x,y) {
+    var bitmojiPosition = 150;
+        noStroke();
+        fill(201, 201, 201);
+        ellipse(x-(bitmojiPosition/150*1),y+(bitmojiPosition/150*39),bitmojiPosition/150*74,bitmojiPosition/150*20);
+        ellipse(x-(bitmojiPosition/150*1),y+(bitmojiPosition/150*80),bitmojiPosition/150*93,bitmojiPosition/150*95);
+    // sweatshirt
+    
+        noStroke();
+        fill(255,224,189);
+        ellipse(x-(bitmojiPosition/150*1),y-(bitmojiPosition/150*7),bitmojiPosition/150*68,bitmojiPosition/150*94); // head
+    
+        fill(0,0,0);
+        ellipse(x-(bitmojiPosition/150*1),y-(bitmojiPosition/150*33),bitmojiPosition/150*70,bitmojiPosition/150*42); // hat
+    
+        fill(115, 78, 78);
+        ellipse(x+(bitmojiPosition/150*4),y-(bitmojiPosition/150*25),bitmojiPosition/150*75,bitmojiPosition/150*30); 
+        ellipse(x-(bitmojiPosition/150*30),y-(bitmojiPosition/150*10),bitmojiPosition/150*22,bitmojiPosition/150*45);
+        ellipse(x+(bitmojiPosition/150*35),y-(bitmojiPosition/150*4),bitmojiPosition/150*10,bitmojiPosition/150*29); // hair
+    
+        stroke(0,0,0);
+        fill(255,224,189);
+        ellipse(x-(bitmojiPosition/150*10),y-(bitmojiPosition/150*1),bitmojiPosition/150*19,bitmojiPosition/150*14);
+        ellipse(x+(bitmojiPosition/150*19),y-(bitmojiPosition/150*1),bitmojiPosition/150*19,bitmojiPosition/150*14);
+        line(x+(bitmojiPosition/150*8),y-(bitmojiPosition/150*2),x-(bitmojiPosition/150*1),y-(bitmojiPosition/150*2)); // glasses
+    
+        fill(48, 120, 66);
+        ellipse(x-(bitmojiPosition/150*10),y-(bitmojiPosition/150*1),bitmojiPosition/150*6,bitmojiPosition/150*4);
+        ellipse(x+(bitmojiPosition/150*18),y-(bitmojiPosition/150*1),bitmojiPosition/150*6,bitmojiPosition/150*4); // eyes
+    
+        fill(255,224,189);
+        bezier(x+(bitmojiPosition/150*7),y-(bitmojiPosition/150*1),x+(bitmojiPosition/150*20),y+(bitmojiPosition/150*22),x-(bitmojiPosition/150*7),y+(bitmojiPosition/150*12),x+(bitmojiPosition/150*2),y+(bitmojiPosition/150*11)); //nose
+    
+        fill(240, 168, 198);
+        arc(x+(bitmojiPosition/150*4),y+(bitmojiPosition/150*22),bitmojiPosition/150*24,bitmojiPosition/150*7,bitmojiPosition/150*30,bitmojiPosition/150*146); // mouth
+    
+        fill(0, 0, 0);
+        line(x-(bitmojiPosition/150*21),y+(bitmojiPosition/150*49),x-(bitmojiPosition/150*21),y+(bitmojiPosition/150*69));
+        line(x-(bitmojiPosition/150*9),y+(bitmojiPosition/150*49),x-(bitmojiPosition/150*22),y+(bitmojiPosition/150*66));
+        line(x-(bitmojiPosition/150*20),y+(bitmojiPosition/150*60),x-(bitmojiPosition/150*8),y+(bitmojiPosition/150*69)); // k initial
+    
+        fill(0,0,0);
+        line(x+(bitmojiPosition/150*9),y+(bitmojiPosition/150*49),x+(bitmojiPosition/150*9),y+(bitmojiPosition/150*68));
+        fill(201, 201, 201);
+        arc(x+(bitmojiPosition/150*11),y+(bitmojiPosition/150*81),bitmojiPosition/150*38,bitmojiPosition/150*64,bitmojiPosition/150*273,bitmojiPosition/150*311);
+        arc(x+(bitmojiPosition/150*17),y+(bitmojiPosition/150*94),bitmojiPosition/150*32,bitmojiPosition/150*74,bitmojiPosition/150*255,bitmojiPosition/150*409);
+        line(x+(bitmojiPosition/150*9),y+(bitmojiPosition/150*67),x+(bitmojiPosition/150*28),y+(bitmojiPosition/150*68)); // b initial
+    
+        noStroke();
+        fill(212, 255, 112);
+        ellipse(x+(bitmojiPosition/150*2),y+(bitmojiPosition/150*120),bitmojiPosition/150*277,bitmojiPosition/150*103); // white ellipse under sweatshirt
+    };
+drawBitmoji(125,157,100);
+
+btn1.draw();
+btn2.draw();
+btn3.draw();
+draw = function() {
+     if(currentScene === "main_screen") {
+         
+         if(mouseIsPressed && isMouseInside(btn1)) {
+            videogamesScene1();
+            videogamesbtn1.draw();
+            videogamesbtn1wrong1.draw();
+            videogamesbtn1wrong2.draw();
+            videogamesbtn1wrong3.draw();
+        }
+         if(mouseIsPressed && isMouseInside(btn2)) {
+            sportsScene1();
+            sportsbtn1.draw();
+            sportsbtn1wrong1.draw();
+            sportsbtn1wrong2.draw();
+            sportsbtn1wrong3.draw();
+         }
+         if(mouseIsPressed && isMouseInside(btn3)) {
+            cultureScene1();
+            culturebtn1.draw();
+            culturebtn1wrong1.draw();
+            culturebtn1wrong2.draw();
+            culturebtn1wrong3.draw();
+         }
+         return;
+     }
+};
+
+splash();

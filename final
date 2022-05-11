@@ -52,7 +52,8 @@ var splash = function() {
     textSize(20);
     text("Choose a Category", 110, 360, 300, 300);
 };
-
+//Buttons for the start screen
+//videogame start btn
 var btn1 = new Button({
     x: 20,
     y: 290,
@@ -60,7 +61,7 @@ var btn1 = new Button({
     height: 50,
     buttonColor: color(26, 212, 212),
 });
-
+//sports start btn
 var btn2 = new Button({
     x: 140,
     y: 290,
@@ -68,7 +69,7 @@ var btn2 = new Button({
     height: 50,
     buttonColor: color(230, 157, 21)
 });
-
+//culture start btn
 var btn3 = new Button({
     x: 260,
     y: 290,
@@ -2214,11 +2215,13 @@ var drawBitmoji = function(x,y) {
         fill(212, 255, 112);
         ellipse(x+(bitmojiPosition/150*2),y+(bitmojiPosition/150*120),bitmojiPosition/150*277,bitmojiPosition/150*103); // white ellipse under sweatshirt
     };
+    
 drawBitmoji(125,157,100);
 
 btn1.draw();
 btn2.draw();
 btn3.draw();
+//function that draws the current scene and makes it so if you press any of the start buttons it draws the answers for the category you chose
 draw = function() {
      if(currentScene === "main_screen") {
          
